@@ -1,11 +1,25 @@
 {% extends "layout.html" %}
-
-{% block title %}
-    Home
-{% endblock %}
-
+{% block title %}Home{% endblock %}
 {% block main %}
-    <div class="header">
-        <h4>Abdullah Rashid</h4>
+    <header class="page-heading">
+        <h1>Abdullah Rashid<span class="period">.</span></h1>
+        <div class="socials">
+            <a class="button-link" href="{{ config.GITHUB_URL }}" target="_blank" rel="noopener">{{ icon('github') }} GitHub</a>
+            <a class="button-link" href="{{ config.LINKEDIN_URL }}" target="_blank" rel="noopener">{{ icon('linkedin') }} LinkedIn</a>
+        </div>
+    </header>
+    <div class="profile">
+        <figure class="portrait">
+            <div class="picture-frame">
+                <img src="{{ url_for('static', filename='headshot.jpg') }}" alt="Portrait of Abdullah Rashid" fetchpriority="high">
+            </div>
+            <figcaption>{{ icon('pin') }} Calgary, Alberta</figcaption>
+        </figure>
+        <section class="biography" aria-labelledby="about">
+            <h2 id="about" class="section-label">About me</h2>
+            <p>I am a 2nd-year Computer Science major at the <strong>University of Calgary</strong>, with a minor in Statistics and a concentration in Software Engineering. I am a Student Developer at <strong>Code the Change YYC</strong>, where I am developing a web application with peers for Silk Route Children’s Bazaar, helping Muslim children develop a brand, create a product or service, build a marketing strategy, and open for business.</p>
+            <p>I’m interested in back-end development and applied machine learning, especially in building tools that help people make sense of data. At Hack the Change YYC, my team built <a href="{{ url_for('projects') }}#signal">Signal</a>, a web app that uses Alberta energy project data to help users explore potential job opportunities. I’m also building an e-commerce application with Spring Boot, React, and MySQL. Outside of projects, I compete in programming contests, and my team placed second in Division II at the Alberta Collegiate Programming Competition.</p>
+            <p class="availability"><span>I’m looking for a <strong>Summer 2027 internship or co-op</strong> in software engineering, data engineering, or applied AI/ML.</span></p>
+        </section>
     </div>
 {% endblock %}

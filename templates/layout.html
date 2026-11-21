@@ -1,12 +1,33 @@
+{% from "icons.html" import icon %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/styles.css" rel="stylesheet"
-    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Abdullah Rashid’s portfolio. Computer Science at the University of Calgary, with projects in back-end development and applied machine learning.">
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='whale-logo.png') }}" type="image/png">
+    <title>{% block title %}{% endblock %} · Abdullah Rashid</title>
 </head>
 <body>
-    {% block main %}{% endblock %}
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container navigation">
+            <a class="brand" href="{{ url_for('index') }}" aria-label="Abdullah Rashid home">
+                <img src="{{ url_for('static', filename='whale-logo.png') }}" alt="" width="60" height="40">
+            </a>
+            <nav aria-label="Main navigation">
+                {% for endpoint, label in [('index', 'Home'), ('projects', 'Projects'), ('resume', 'Resume')] %}
+                    <a href="{{ url_for(endpoint) }}"{% if request.endpoint == endpoint %} aria-current="page"{% endif %}>{{ label }}</a>
+                {% endfor %}
+                <a href="mailto:{{ config.CONTACT_EMAIL }}">Contact</a>
+            </nav>
+            <button class="theme-toggle" type="button" aria-label="Switch to light mode" hidden>
+                {{ icon('sun') }}{{ icon('moon') }}
+            </button>
+        </div>
+    </header>
+    <main id="main" class="container" tabindex="-1">{% block main %}{% endblock %}</main>
 </body>
 </html>

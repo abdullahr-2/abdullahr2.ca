@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Projects{% endblock %}
+{% block main %}
+    <header class="page-heading">
+        <h1>My Projects<span class="period">.</span></h1>
+        <a class="button-link" href="{{ config.GITHUB_URL }}" target="_blank" rel="noopener">{{ icon('github') }} github.com/abdullahr-2</a>
+    </header>
+    <div class="project-grid">
+        {% for project in projects %}
+            <article class="project-card" id="{{ project.name|lower|replace(' ', '-') }}">
+                <header>
+                    <div class="card-title">
+                        <h2>{{ project.name }}</h2>
+                        <a href="{{ project.repository }}" target="_blank" rel="noopener" class="repo-link" aria-label="{{ project.name }} GitHub repository">{{ icon('github') }} GitHub</a>
+                    </div>
+                    <ul class="technologies" aria-label="Technologies">
+                        {% for technology in project.stack %}<li>{{ technology }}</li>{% endfor %}
+                    </ul>
+                </header>
+                <p>{{ project.about }}</p>
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %}
