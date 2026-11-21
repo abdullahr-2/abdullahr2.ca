@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="public", static_folder="public/static")
 app.config.update(
     GITHUB_URL="https://github.com/abdullahr-2",
     LINKEDIN_URL="https://www.linkedin.com/in/abdullahr2/",

@@ -17,7 +17,7 @@ def build():
                 raise RuntimeError(f"Could not build {route}: HTTP {response.status_code}")
             (output / filename).write_bytes(response.data)
 
-    copytree(root / "static", output / "static", dirs_exist_ok=True)
+    copytree(app.static_folder, output / "static", dirs_exist_ok=True)
 
 
 if __name__ == "__main__":
